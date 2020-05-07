@@ -10,7 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 class GameSetup extends JDialog {
-
     private PlayerType whitePlayerType;
     private PlayerType blackPlayerType;
     private JSpinner searchDepthSpinner;
@@ -80,7 +79,7 @@ class GameSetup extends JDialog {
     }
 
     boolean isAIPlayer(final Player player) {
-        if(player.getAlliance() == Alliance.WHITE) {
+        if (player.getAlliance() == Alliance.WHITE) {
             return getWhitePlayerType() == PlayerType.COMPUTER;
         }
         return getBlackPlayerType() == PlayerType.COMPUTER;

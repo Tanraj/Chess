@@ -5,26 +5,24 @@ import com.chess.engine.pieces.Piece;
 import com.chess.engine.player.Player;
 
 public final class StandardBoardEvaluator implements BoardEvaluator {
-
     private static final int CHECK_BONUS = 50;
     private static final int CHECK_MATE_BONUS = 10000;
     private static final int DEPTH_BONUS = 100;
     private static final int CASTLE_BONUS = 60;
 
     @Override
-    public int evaluate(Board board,
-                        final int depth) {
+    public int evaluate(Board board, final int depth) {
         return scorePlayer(board, board.whitePlayer(), depth) -
-                scorePlayer(board, board.blackPlayer(), depth);     //WHITE advantage ? Positive : Negative
+                scorePlayer(board, board.blackPlayer(), depth);  // WHITE advantage ? Positive : Negative
     }
 
     private int scorePlayer(final Board board,
                             final Player player,
-                            final int depth){
+                            final int depth) {
         return pieceValue(player) +
                 mobility(player) +
                 check(player) +
-                checkmate(player, depth) + 
+                checkmate(player, depth) +
                 castled(player);
     }
 
@@ -36,7 +34,7 @@ public final class StandardBoardEvaluator implements BoardEvaluator {
         return player.getOpponent().isInCheckMate() ? CHECK_MATE_BONUS * depthBonus(depth) : 0;
     }
 
-    private static int depthBonus(int depth){
+    private static int depthBonus(int depth) {
         return depth == 0 ? 1 : DEPTH_BONUS * depth;
     }
 
@@ -48,16 +46,11 @@ public final class StandardBoardEvaluator implements BoardEvaluator {
         return player.getLegalMoves().size();
     }
 
-    private static int pieceValue(final Player player){
+    private static int pieceValue(final Player player) {
         int pieceValueScore = 0;
-        for (final Piece piece : player.getActivePieces()){
+        for (final Piece piece : player.getActivePieces()) {
             pieceValueScore += piece.getPieceValue();
         }
         return pieceValueScore;
     }
-
-
-
-
-
 }

@@ -39,13 +39,12 @@ public class WhitePlayer extends Player {
     @Override
     protected Collection<Move> calculateKingCastles(final Collection<Move> playerLegals,
                                                     final Collection<Move> opponentsLegals) {
-
         final List<Move> kingCastles = new ArrayList<>();
 
         if (this.playerKing.isFirstMove() && !this.isInCheck()) {
-            //WHITE's king side castle
+            // WHITE's king side castle
             if (!this.board.getTile(61).isTileOccupied() && !this.board.getTile(62).isTileOccupied()) {
-                final Tile rookTile = this.board.getTile(63);   //Tile the Rook is on
+                final Tile rookTile = this.board.getTile(63);  // Tile the Rook is on
 
                 if (rookTile.isTileOccupied() && rookTile.getPiece().isFirstMove()) {
                     if (Player.calculateAttacksOnTile(61, opponentsLegals).isEmpty() &&

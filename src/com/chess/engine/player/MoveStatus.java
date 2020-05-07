@@ -1,9 +1,9 @@
 package com.chess.engine.player;
 
 public enum MoveStatus {
-    DONE{
+    DONE {
         @Override
-        public boolean isDone(){
+        public boolean isDone() {
             return true;
         }
     },
@@ -20,9 +20,5 @@ public enum MoveStatus {
         }
     };
 
-
     public abstract boolean isDone();
-
-
-
 }
